@@ -1,0 +1,7 @@
+a{
+    padding: 2px;
+}
+.active {
+    background: blue;
+    color: white;
+}

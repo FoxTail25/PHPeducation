@@ -1,0 +1,21 @@
+<?php
+include_once('origin/Tag.php');
+
+class Link extends Tag {
+    const active = 'active';
+    public function __construct(){
+        parent::__construct('a');
+        $this->setAttr('href','');
+    }
+    private function activateSelf(){
+        if($this->getAttr('href') == $_SERVER['REQUEST_URI']){
+            $this->addClass(self::active);
+        }
+    }
+    public function open(){
+        $this->activateSelf();
+        return parent::open();
+    }
+}
+
+?>
