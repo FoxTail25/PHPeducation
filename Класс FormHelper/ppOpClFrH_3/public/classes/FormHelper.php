@@ -57,45 +57,6 @@ class FormHelper extends TagHelper {
     public function textAreaClose(){
         return $this->close('textarea');
     }
-    public function select($attrArr=['name'=>'list'], $optionArr=[['text' => 'item1', 'attrs' => ['value' => '1']]]){
-        $result = $this->open('select',$attrArr);
-        foreach($optionArr as $option){
-            $result .= $this->getOption($attrArr['name'],$option);
-        }
-        $result .= $this->close('select');
-        return $result;
-    }
-    public function getAttr($attrArr){
-        $result = '';
-        if(!empty($attrArr)){
-
-            foreach($attrArr as $attrName => $attrValue){
-                if($attrValue === (bool)true){
-                    $result .= (string)$attrName; 
-                } else {
-
-                    $result .=(string)$attrName."=\"".(string)$attrValue."\"";
-                }
-            }
-        }
-        return $result;
-    }
-    protected function getOption($selectName, $optionDataArr){
-        if(isset($_REQUEST[$selectName])){
-            $value = $_REQUEST[$selectName];
-            unset($optionDataArr['attrs']['selected']);
-            if($value == $optionDataArr['attrs']['value']){
-                $optionDataArr['attrs']['selected'] = true;
-            }
-            $result = $this->open('option',$optionDataArr['attrs']);
-        }else{
-            $result = $this->open('option',$optionDataArr['attrs']);
-        }
-        $result .= $optionDataArr['text'];
-        $result .= $this->close('option');
-        return $result;
-
-    }
 }
 
 ?>
