@@ -94,7 +94,6 @@ class FormHelper extends TagHelper {
         $result .= $optionDataArr['text'];
         $result .= $this->close('option');
         return $result;
-
     }
 }
 
