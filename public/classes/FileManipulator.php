@@ -37,6 +37,12 @@
 		}
 		public function copy($filePath, $copyPath) {
 			// копирует файл
+			if($filePath[0] !='/'){
+				$filePath = $this->home . '/'.$filePath;
+			}
+			if($copyPath[0] !='/'){
+				$copyPath = $this->home . '/'.$copyPath;
+			}
 
 			if(file_exists($filePath)){
 				copy($filePath, $copyPath);
@@ -49,11 +55,23 @@
 		public function rename($filePath, $newName) {
 			// переименовывает файл
 			// вторым параметром принимает новое имя файла (только имя, не путь)
+			if($filePath[0] !='/'){
+				$filePath = $this->home . '/'.$filePath;
+			}
 			
-			$pathArr = pathinfo($this->home . $filePath);//отделяем имя директории от имени файла
-			$dirName = $pathArr['dirname']; //Определяем имя директории
-			$fileName = $pathArr['filename']; //Определяем имя файла
-			rename($this->home . $filePath, $this->home . $dirName . $fileName);
+			if(file_exists($filePath)){
+
+				$pathArr = pathinfo($filePath);//отделяем имя директории от имени файла
+				$dirName = $pathArr['dirname']; //Определяем имя директории
+				$fileName = $pathArr['filename']; //Определяем имя файла
+
+
+				rename($filePath, $dirName .$newName);
+				return "файл $filePath успешно переименован в " .$this->home . $dirName . $newName;
+			} else {
+				return "файл $filepath не найден";
+			}
+
 		}
 		public function replace($filePath, $newPath) {
 			// перемещает файл
