@@ -1,20 +1,20 @@
 <?php
-include_once('classes/CookieShell.php');
+include_once('classes/SessionShell.php');
 
-	$csh = new CookieShell;
-	$countName = 'pageCount';
-	$lifeTime=60*60*60; //(1 hour)
-	
-	// if($csh->get($countName) != '0') {
-	if($csh->exists($countName)) {
-		$countValue = $csh->get($countName);
-		$countvalue = $countValue++;
-		$csh->set($countName, $countValue, $lifeTime);
-	} else {
-		$csh->set($countName, '0', $lifeTime);
-	}
+$ssh = new SessionShell;
+$countName = 'sessionCount';
 
-	echo "счётчик обновления страницы: ".($csh->get($countName));
 
+if($ssh->exists($countName)){
+	$countValue = $ssh->get($countName);
+	$countValue++;
+	$ssh->set($countName, $countValue);
+} else {
+	$ssh->set($countName, 0);
+}
+
+if($ssh->exists($countName)){
+	echo "Обновлений страницы: ".$ssh->get($countName);
+}
 	
 ?>
