@@ -1,20 +1,13 @@
 <?php
-include_once('classes/SessionShell.php');
+include_once('classes/FileManipulator.php');
 
-$ssh = new SessionShell;
-$countName = 'sessionCount';
+$fm = new FileManipulator;
 
+// $result = $fm->create('hello.txt', 'hello World!');
+// echo $result;
+// $result = $fm->delete('hello.txt', 'hello World!');
+// echo $result;
 
-if($ssh->exists($countName)){
-	$countValue = $ssh->get($countName);
-	$countValue++;
-	$ssh->set($countName, $countValue);
-} else {
-	$ssh->set($countName, 0);
-}
-
-if($ssh->exists($countName)){
-	echo "Обновлений страницы: ".$ssh->get($countName);
-}
+var_dump(pathinfo('/files/files/text.txt'))
 	
 ?>
