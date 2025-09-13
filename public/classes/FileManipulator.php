@@ -4,34 +4,32 @@
 		protected $home;
 
 		public function __construct(){
-			$this->home = $_SERVER['DOCUMENT_ROOT'].'/files';
+			$this->home = $_SERVER['DOCUMENT_ROOT'];
 		}
 		public function create($filePath, $value = '') {
 			// создает файл
-			if($filePath[0] !='/'){
-				$filePath = '/'.$filePath;
-			}
-			$pathArr = pathinfo($this->home . $filePath);//отделяем имя директории от имени файла
+			$filePath = $this->addHomeAndSlash($filePath); // Добавляем $home и слеш (если его нет) 
+
+			$pathArr = pathinfo($filePath);//отделяем имя директории от имени файла
 			$dirName = $pathArr['dirname']; //Определяем имя директории
-			if (!file_exists($dirName)){ //Если такой директории нет...
+			$fileName = $pathArr['basename'];//Определяем имя файла
+
+			if ($dirName and !file_exists($dirName)){ //Если такой директории нет...
 				mkdir($dirName,0777,true); //...то создаём её
 			} 
-			file_put_contents($this->home. $filePath, $value); //создаём и записываем файл
-			return "файл {$pathArr['filename']} успешно создан в директории $dirName";
+			file_put_contents($filePath, $value); //создаём и записываем файл
+			return "файл $fileName успешно создан в директории $dirName";
 			
 		}
 		public function delete($filePath) {
 			// удаляет файл
-			if($filePath[0] !='/'){
-				$filePath = '/'.$filePath;
-			}
-			$filePath = $this->home . $filePath;
+			$filePath = $this->addHomeAndSlash($filePath); // Добавляем $home и слеш (если его нет) 
 
 			if(file_exists($filePath)){
 				unlink($filePath);
 				return "файл $filePath усешно удалён";
 			} else {
-				return "По указанному пути файла не найдено";
+				return "По указанному пути файл не найден";
 			}
 			
 		}
@@ -80,6 +78,12 @@
 		public function weigh($filePath) {
 			// узнает размер файла
 			return "Размер файла $filePath:". filesize('test.txt') / (1024 * 1024) . " МегаБайт";
+		}
+		private function addHomeAndSlash($filePath){ // Добавляет к пути "папку проекта" и слеш (если его не было);
+			if($filePath[0] !='/'){
+				$filePath = '/'.$filePath;
+			}
+			return $this->home .$filePath;
 		}
 	}
 ?>
