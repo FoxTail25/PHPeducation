@@ -5,17 +5,23 @@ $fm = new FileManipulator;
 
 $result = $fm->create('files/hello.txt', 'hello World!');
 echo $result;
+echo '<br/>';
+$result = $fm->copy('files/hello.txt', 'files/hello_copy.txt');
+echo $result;
+echo '<br/>';
 // echo '<br/>';
-// $result = $fm->copy('hello.txt', 'hello_copy.txt');
-// echo $result;
+$result = $fm->rename('files/hello_copy.txt', 'hello_rename.txt');
+echo $result;
+echo '<br/>';
+$result = $fm->replace('files/hello_rename.txt', 'files2/hello_replace.txt');
+echo $result;
+echo '<br/>';
+$result = $fm->weigh('files2/hello_replace.txt');
+echo $result;
+echo '<br/>';
 // echo '<br/>';
-// echo '<br/>';
-// $result = $fm->rename('hello_copy.txt', 'hello_rename.txt');
-// echo $result;
-// echo '<br/>';
-// echo '<br/>';
-// $result = $fm->delete('hello.txt', 'hello World!');
-// echo $result;
+$result = $fm->delete('files/hello.txt');
+echo $result;
 // echo '<br/>';
 
 	

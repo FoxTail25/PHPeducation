@@ -28,56 +28,60 @@
 			if(file_exists($filePath)){
 				unlink($filePath);
 				return "файл $filePath усешно удалён";
-			} else {
-				return "По указанному пути файл не найден";
 			}
-			
+			return "По указанному пути $filePath файл не найден";
+				
 		}
 		public function copy($filePath, $copyPath) {
 			// копирует файл
-			if($filePath[0] !='/'){
-				$filePath = $this->home . '/'.$filePath;
-			}
-			if($copyPath[0] !='/'){
-				$copyPath = $this->home . '/'.$copyPath;
-			}
+				$filePath = $this->addHomeAndSlash($filePath);
+				$copyPath = $this->addHomeAndSlash($copyPath);
 
 			if(file_exists($filePath)){
 				copy($filePath, $copyPath);
 				return "файл $filePath успешно скопирован в $copyPath";
-			} else {
-				return "файл $filePath не найден";
 			}
-		
+			return "файл $filePath не найден по указанному пути";
 		}
 		public function rename($filePath, $newName) {
 			// переименовывает файл
 			// вторым параметром принимает новое имя файла (только имя, не путь)
-			if($filePath[0] !='/'){
-				$filePath = $this->home . '/'.$filePath;
-			}
+			$filePath = $this->addHomeAndSlash($filePath);
 			
 			if(file_exists($filePath)){
 
 				$pathArr = pathinfo($filePath);//отделяем имя директории от имени файла
 				$dirName = $pathArr['dirname']; //Определяем имя директории
-				$fileName = $pathArr['filename']; //Определяем имя файла
 
-
-				rename($filePath, $dirName .$newName);
+				rename($filePath, $dirName.'/'.$newName);
 				return "файл $filePath успешно переименован в " .$this->home . $dirName . $newName;
-			} else {
-				return "файл $filepath не найден";
 			}
-
+			return "файл $filePath не найден";
 		}
 		public function replace($filePath, $newPath) {
 			// перемещает файл
-			rename($filePath, $newPath);
+			$filePath = $this->addHomeAndSlash($filePath);
+			
+			if(file_exists($filePath)){
+				
+				$newPath = $this->addHomeAndSlash($newPath);
+				$pathArr = pathinfo($newPath);//отделяем имя директории от имени файла
+				$dirName = $pathArr['dirname']; //Определяем имя директории
+				$fileName = $pathArr['basename'];//Определяем имя файла
+				
+				if ($dirName and !file_exists($dirName)){ //Если такой директории нет...
+					mkdir($dirName,0777,true); //...то создаём её
+				} 
+				
+				rename($filePath, $newPath);
+				return "файл $filePath успешно перемещён в $newPath";
+			}
+			return "файл по указанному пути $filePath не найден";
 		}
 		public function weigh($filePath) {
+			$filePath = $this->addHomeAndSlash($filePath);
 			// узнает размер файла
-			return "Размер файла $filePath:". filesize('test.txt') / (1024 * 1024) . " МегаБайт";
+			return "Размер файла $filePath:". filesize($filePath) / (1024 * 1024) . " МегаБайт";
 		}
 		private function addHomeAndSlash($filePath){ // Добавляет к пути "папку проекта" и слеш (если его не было);
 			if($filePath[0] !='/'){
