@@ -1,6 +1,11 @@
 <?php
-	class DatabaseShell
-	{
+	
+	// $host = "MySQL-8.0";
+	// $user = "root";
+	// $pass = "";
+	// $baseName = "php_sql_task";
+	
+	class DatabaseShell {
 		private $link;
 		
 		public function __construct($host, $user, $password, $database) {
@@ -26,7 +31,4 @@
 			// получает массив записей по условию
 		}
 	}
-	
-	
-
 ?>
