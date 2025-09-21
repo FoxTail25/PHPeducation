@@ -1,9 +1,8 @@
 <?php
-namespace Modules\Cart;
+namespace Core;
 
-class Cart{
-    public $name = 'modules\cart';
-
+class Controller {
+    public $name = "core";
     public function __toString(){
         return $this->name;
     }

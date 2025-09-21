@@ -1,12 +1,10 @@
 <?php
-namespace Modules\Cart;
+namespace Project;
 
-class Cart{
-    public $name = 'modules\cart';
-
+class Controller {
+    public $name = "progect";
     public function __toString(){
         return $this->name;
     }
 }
-
 ?>
