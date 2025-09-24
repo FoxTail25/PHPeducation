@@ -1,7 +1,6 @@
 <?php
-// Относительные пути в пространстве имен в ООП в PHP
-namespace Modules\Shop;
+// Команда use и пространства имен в ООП в PHP
+include_once('users\page.php');
 
-include_once('M')
-
+echo new \Users\Page;
 ?>
