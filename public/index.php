@@ -1,21 +1,26 @@
 <?php
 // Команда use и относительные пути в ООП в PHP
-namespace Core;
-include_once 'core/storage/DataBase.php';
+namespace Project\Data;
 
+include_once 'project/data/controller/Page.php';
+include_once 'project/data/model/Page.php';
 
-// use Storage\DataBase; 
-use Core\Storage\DataBase;
+use Project\Data\Controller\Page as C_Page;
+use Project\Data\Controller\Page as M_Page;
 
-class Model {
-	public $database;
-	public function __construct() {
-		$this->database  = new DataBase;
-	}
-	public function __toString(){
-		return $this->database;
-	}
+class Test {
+    private $pageController;
+    private $pageModel;
+    public function __construct() {
+        $this->pageController  = new C_Page;
+        $this->pageModel       = new M_Page;
+        return $this;
+    }
+    public function __toString(){
+        return "$this->pageController
+        <br/>
+        $this->pageModel";
+    }
 }
-echo new Model;
-
+echo new Test;
 ?>
