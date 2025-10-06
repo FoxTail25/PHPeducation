@@ -4,14 +4,18 @@ namespace Project\Controllers;
 use \Core\Controller;
 
 class PageController extends Controller {
+        private $pages;
 
-    public function show1(){
-        echo '1';
-    }
-
-    public function show2(){
-        echo '2';
-    }
+        public function __construct(){
+            $this->pages = [
+                1 => 'страницв 1',
+                2 => 'страницв 2',
+                3 => 'страницв 3',
+            ];
+        }
+        public function show($params){
+            echo $this->pages[ $params['id']];
+        }
 	
 }
 
