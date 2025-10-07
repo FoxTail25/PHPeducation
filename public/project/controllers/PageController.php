@@ -13,9 +13,12 @@ class PageController extends Controller {
                 3 => 'страницв 3',
             ];
         }
-        public function show($params){
+        public function show($params) {
             echo $this->pages[ $params['id']];
         }
+        public function act() {
+			return $this->render('page/act');
+		}
 	
 }
 
