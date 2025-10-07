@@ -38,18 +38,6 @@ class UserController extends Controller {
 			}
 			echo $result;
 		}
-		public function first($params){
-			$count = $params['n'];
-			if($count > count($this->users)){
-				$count = count($this->users);
-			}
-			$result ='';
-			for($i = 1; $i <= $count; $i++){
-				$result .= "Имя: {$this->users[$i]['name']} Возраст: {$this->users[$i]['age']} Зарплата: {$this->users[$i]['salary']}";
-				$result .="<br/>";
-			}
-			echo $result;
-		}
 	}
 
 ?>
