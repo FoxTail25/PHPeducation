@@ -5,7 +5,7 @@ use \Core\Controller;
 
 class NumController extends Controller {
 
-    public function num($params) {        
+    public function sum($params) {        
         echo array_sum($params);
     }
 	
