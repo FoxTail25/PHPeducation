@@ -39,11 +39,6 @@ class ProductController extends Controller {
                 ],
         ];
     }
-    public function show($params){
-        $productNumber = $params['pn'];
-        $product = $this->products[$productNumber];
-        var_dump($product);
-    }
 }
 
 ?>
