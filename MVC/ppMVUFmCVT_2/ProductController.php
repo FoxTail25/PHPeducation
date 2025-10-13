@@ -42,12 +42,7 @@ class ProductController extends Controller {
     public function show($params){
         $productNumber = $params['pn'];
         $product = $this->products[$productNumber];
-        
-        return $this->render('product/show',['product' => $product]);
-    }
-    public function all(){
-        
-        return $this->render('product/all',['products' => $this->products]);
+        var_dump($product);
     }
 }
 
