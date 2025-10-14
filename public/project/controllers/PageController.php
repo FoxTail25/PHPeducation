@@ -22,6 +22,16 @@ class PageController extends Controller {
 				'users'  => ['user1', 'user2', 'user3'],
 			]);
 		}
+
+        public function show1(){
+            $this->title = "show 1";
+
+            return $this->render('page/show1');
+        }
+        public function show2(){
+            $this->title = "show 1";
+            return $this->render('page/show2');
+        }
 	
 }
 
