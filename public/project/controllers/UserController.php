@@ -36,7 +36,8 @@ class UserController extends Controller {
 				$result .= "Имя: {$user['name']} Возраст: {$user['age']} Зарплата: {$user['salary']}";
 				$result .="<br/>";
 			}
-			echo $result;
+			$this->title = 'все пользователи';
+			return $this->render('user/all', ['result' => $result]);
 		}
 		public function first($params){
 			$count = $params['n'];
@@ -48,7 +49,10 @@ class UserController extends Controller {
 				$result .= "Имя: {$this->users[$i]['name']} Возраст: {$this->users[$i]['age']} Зарплата: {$this->users[$i]['salary']}";
 				$result .="<br/>";
 			}
-			echo $result;
+			// echo $result;
+			$this->title = "первые $count";
+			return $this->render('user/first', ['result' => $result]);
+
 		}
 	}
 

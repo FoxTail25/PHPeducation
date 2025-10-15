@@ -29,7 +29,7 @@ class PageController extends Controller {
             return $this->render('page/show1');
         }
         public function show2(){
-            $this->title = "show 1";
+            $this->title = "show 2";
             return $this->render('page/show2');
         }
 	
