@@ -20,15 +20,16 @@ class UserController extends Controller {
 			$userId = $params['id'];
 			$this->user = $this->users[$userId];
 			$result = "Имя: {$this->user['name']} Возраст: {$this->user['age']} Зарплата: {$this->user['salary']}";
-				$result .="<br/>";
-			echo $result;
-
+			$result .="<br/>";
+			$this->title = "user $userId";
+			return $this->render('user/show', ['result' => $result]);
         }
 		public function info($params){
 			$id = $params['id'];
 			$key = $params['key'];
-
-			echo $this->users[$id][$key];
+			$result = $this->users[$id][$key];
+			$this->title = "user $id $key";
+			return $this->render('user/info', ['key' => $result]);
 		}
 		public function all(){
 			$result = "";
@@ -49,10 +50,8 @@ class UserController extends Controller {
 				$result .= "Имя: {$this->users[$i]['name']} Возраст: {$this->users[$i]['age']} Зарплата: {$this->users[$i]['salary']}";
 				$result .="<br/>";
 			}
-			// echo $result;
-			$this->title = "первые $count";
+			$this->title = "первые $count пользователя";
 			return $this->render('user/first', ['result' => $result]);
-
 		}
 	}
 

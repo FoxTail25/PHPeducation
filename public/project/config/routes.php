@@ -10,6 +10,7 @@
 		new Route('/my-act2/','test', 'act2'),
 		new Route('/my-act3/','test', 'act3'),
 		new Route('/user/all/', 'user', 'all'),
+		new Route('/first/:n/', 'user', 'first'),
 		new Route('/user/:id/', 'user', 'show'),
 		new Route('/product/all/', 'product', 'all'),
 		new Route('/product/:pn/', 'product', 'show'),

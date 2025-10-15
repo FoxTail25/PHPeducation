@@ -6,7 +6,11 @@ use \Core\Controller;
 class NumController extends Controller {
 
     public function sum($params) {        
-        echo array_sum($params);
+        $result = array_sum($params);
+
+        $this->title = 'сумма чисел';
+        
+        return $this->render('num/sum', ['res' => $result]);
     }
 	
 }
