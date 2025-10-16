@@ -9,6 +9,7 @@
 		new Route('/my-act1/','test', 'act1'),
 		new Route('/my-act2/','test', 'act2'),
 		new Route('/my-act3/','test', 'act3'),
+		new Route('/page/','page', 'test'),
 		new Route('/page/:id','page', 'show'),
 		new Route('/user/all/', 'user', 'all'),
 		new Route('/first/:n/', 'user', 'first'),
