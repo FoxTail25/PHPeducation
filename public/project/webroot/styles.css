@@ -1,0 +1,9 @@
+header {
+    color:red;
+   background: url('/project/webroot/img/smile.png');
+}
+.left {
+    background: url('/project/webroot/img/smile.png');
+    background: red;
+    /* background: no-repeat url("/shared-assets/images/examples/lizard.png"); */
+}
