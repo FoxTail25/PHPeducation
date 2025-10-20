@@ -8,6 +8,10 @@ header {
 .container {
     display: flex;
 }
+main {
+    flex-grow: 1;
+    text-align: center;
+}
 .left, .right {
     background: no-repeat center/contain url('/project/webroot/img/smile.png');
 }
