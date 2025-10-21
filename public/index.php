@@ -4,6 +4,7 @@
 	error_reporting(E_ALL);
 	ini_set('display_errors', 'on');
 
+	// функция автозагрузки классов
     spl_autoload_register(function($class) {
 		preg_match('#(.+)\\\\(.+?)$#', $class, $match);
 		
@@ -23,6 +24,10 @@
 		} else {
 			throw new \Exception("File $path not found for class $class. Check if the file exists at the specified path. Make sure that your class's namespace matches the one the framework is trying to find for this class. For example, you are creating a model class but forgot to use it via use. In this case, you are trying to call a model class in the controller's namespace, and such a file does not exist.");
 		}
-        // Автозагрузка нестандартна тем, что выводит развернутое сообщение об ошибки в случае если не может найти файл.
+        // Автозагрузка нестандартна тем, что приобрназовывает название папки в нижний регистр и выводит развернутое сообщение об ошибки в случае если не может найти файл.
 	});
+
+	// подключение роутов
+	$routes = require $_SERVER['DOCUMENT_ROOT'] . '/project/config/routes.php';
+	// var_dump($routes);
 ?>
