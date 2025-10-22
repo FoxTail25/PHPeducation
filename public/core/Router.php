@@ -2,16 +2,20 @@
 	namespace Core;
 	
 	class Router {
+
+		private $routes;
+
 		public function getTrack($routes, $uri) {
 			foreach ($routes as $route) {
 				$pattern = $this->createPattern($route->path); // see method description
 				
+				$uri = $this->addSlash($uri);  // Добавляем слеш в конце адреса, если его нет
 				/*
-					Check if the URI matches the regular expression
-					If the URI matches the regex, $params will contain the parameters
+					Проверяет, соответствует ли URI регулярному выражению.
+					Если URI соответствует регулярному выражению, $params будет содержать параметры.
 				*/
 				if (preg_match($pattern, $uri, $params)) {
-					$params = $this->clearParams($params);  // clean parameters from elements with numeric keys
+					$params = $this->clearParams($params);  // очистить параметры из элементов с цифровыми ключами
 					return new Track($route->controller, $route->action, $params);
 				}
 			}
@@ -20,13 +24,14 @@
 		}
 		
 		/*
-			Method converts the path from the route into a regex pattern,
-			substituting named capture groups for the route parameters.
-		
-			For example, from the address '/test/:var1/:var2/' the method
-			will create the regex '#^/test/(?<var1>[^/]+)/(?<var2>[^/]+)/?$#'
+			Метод преобразует путь из маршрута в шаблон регулярного выражения,
+			заменяя параметры маршрута именованными группами захвата.
+
+			Например, из адреса '/test/:var1/:var2/' метод
+			создаст регулярное выражение '#^/test/(?<var1>[^/]+)/(?<var2>[^/]+)/?$#'
 		*/
 		private function createPattern($path) {
+
 			return '#^' . preg_replace('#/:([^/]+)#', '/(?<$1>[^/]+)', $path) . '/?$#';
 		}
 		
@@ -40,6 +45,13 @@
 			}
 			
 			return $result;
+		}
+		private function addSlash($path){
+			$lastSimbol = substr($path, -1);
+			if($lastSimbol != '/') {
+				$path .= '/';
+			}
+			return $path;
 		}
 	}
 	

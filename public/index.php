@@ -4,6 +4,8 @@
 	error_reporting(E_ALL);
 	ini_set('display_errors', 'on');
 
+	require_once $_SERVER['DOCUMENT_ROOT'] . '/project/config/connection.php'; // подключение базы данных
+
 	// функция автозагрузки классов
     spl_autoload_register(function($class) {
 		preg_match('#(.+)\\\\(.+?)$#', $class, $match);
@@ -31,4 +33,9 @@
 	$routes = require $_SERVER['DOCUMENT_ROOT'] . '/project/config/routes.php';
 
 	$track = ( new Router ) -> getTrack($routes, $_SERVER['REQUEST_URI']);
+
+		// Вызов диспетчера:
+	$page  = ( new Dispatcher ) -> getPage($track);
+
+	echo (new View) -> render($page); // вот так используем класс View
 ?>
