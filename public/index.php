@@ -28,11 +28,12 @@
 
 	$routes = require $_SERVER['DOCUMENT_ROOT'] . '/project/config/routes.php';
 
-	// var_dump($routes);
 
 	$router = new Router();
 	$track  = $router->getTrack($routes, $_SERVER['REQUEST_URI']);
 	
-	
+	// var_dump($track);	
+	// print_r($track);	
+	echo($track);
 
 ?>
