@@ -5,10 +5,10 @@
 	class PageController extends Controller	{
 
 		public function show1(){
-			echo '1';
+			echo 'it ia my-page 1';
 		}
 		public function show2(){
-			echo '2';
+			echo 'it ia my-page 2';
 		}
 		
 	}
