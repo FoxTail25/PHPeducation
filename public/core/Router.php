@@ -4,12 +4,14 @@ namespace Core;
 class Router {
 
 	public function getTrack($routes, $uri){
-		// return 'track';
-		// return $uri;
-		// return $routes[0];
+		
 		$r = '<br/>';
 		foreach($routes as $route){
-			$r.='route: '. $route->path . ' url: '. $uri.'<br/>'. $route->path == $uri ;
+			$r.='route: '. $route->path . ' url: '. $uri;
+			if($route->path == $uri){
+				$r .= " совпадает";
+			}
+			$r .='<br/>';
 		}
 		return $r;
 	}
