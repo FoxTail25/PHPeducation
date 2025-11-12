@@ -19,7 +19,7 @@
                     5000], 
             ];
         }
-        public function user($user){
+        public function show($user){
             $userNumber = $user['id'];
             if($userNumber > 0 and $userNumber < 6) {
                 $result = $this->getUserData($userNumber);
@@ -38,6 +38,35 @@
             }
             echo $result;
         }
+        public function info($param){
+           $id = $param['id'];
+           $key = $param['key'];
+           $allId = array_keys($this->users);
+           $allKeys = array_keys($this->users[1]);
+
+           $result = '';
+            if(!in_array($id, $allId)){
+                $result = "нет такого пользователя";
+            } else {
+                if(!in_array($key, $allKeys)){
+                    $result = "у пользователя нет такого параметра";
+                } else {
+                    $result = $key.": ".$this->users[$id][$key];
+                }
+            }
+            echo $result;
+        }
+        public function first($param) {
+            $countity = $param['n'];
+            $result = '';
+            for($i = 1; $i <= $countity; $i++){
+                $result .= $this->getUserData($i);
+                $result .='<br/>';
+                $result .='<br/>';
+            }
+            echo $result;
+        }
+
         private function getUserData($userNumber) {
             $user = $this->users[$userNumber];
                 $user = $this->users[$userNumber];
