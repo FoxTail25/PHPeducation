@@ -43,9 +43,11 @@
 		public function show($param){
 			$productKey = $param['n'];
 			$product = $this->getProduct($productKey);
+			$this->title = $product['name'];			
 			return $this->render('product/show', ['product' => $product]);
 		}
 		public function all($param){
+			$this->title = "все продукты";
 			return $this->render('product/all', ['products' => $this->products]);
 		}
 		

@@ -15,5 +15,6 @@
 		new Route('/product/:n/', 'product', 'show'), 
 		new Route('/user/first/:n/', 'user', 'first'), 
 		new Route('/user/:id/:key/', 'user', 'info'), 
+		new Route('/page/:pageNum/', 'page', 'show'), 
 	];
 	
