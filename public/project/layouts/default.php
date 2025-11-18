@@ -2,6 +2,7 @@
 <html>
 	<head>
 		<meta charset="utf-8">
+		<link rel="stylesheet" href="/project/webroot/style.css"/>
 		<title><?= $title ?></title>
 	<body>
 		<header>
