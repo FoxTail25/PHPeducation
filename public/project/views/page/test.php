@@ -1,0 +1,3 @@
+<div>
+    <?=($content['text']);?>
+</div>
