@@ -1,4 +1,5 @@
-<h1>Продукт <?=$product['name']?> из категории <?=$product['category']?></h1>
+<h1>Продукт <?=$product['name']?></h1>
+<h3><?=$product['description']?></h3>
 <p>
 	Цена: <?=$product['price']?>, количество: <?=$product['quantity']?>
 </p>

@@ -14,7 +14,7 @@
 		new Route('/user/all/', 'user', 'all'), 
 		new Route('/user/:id/', 'user', 'show'), 
 		new Route('/product/all/', 'product', 'all'), 
-		new Route('/product/:n/', 'product', 'show'), 
+		new Route('/product/:id/', 'product', 'show'), 
 		new Route('/product/', 'product', 'all'), 
 		new Route('/user/first/:n/', 'user', 'first'), 
 		new Route('/user/:id/:key/', 'user', 'info'), 
